@@ -1,0 +1,99 @@
+---
+const skills = [
+  { name: 'AWS', color: '#FF9900', icon: 'aws.png' },
+  { name: 'GCP', color: '#4285F4', icon: 'gcp.png' },
+  { name: 'Docker', color: '#2496ED', icon: 'docker.png' },
+  { name: 'HTML', color: '#E34F26', icon: 'html.png' },
+  { name: 'CSS', color: '#1572B6', icon: 'css.png' },
+  { name: 'C++', color: '#00599C', icon: 'cpl.png' },
+  { name: 'Python', color: '#3776AB', icon: 'python.png' },
+  { name: 'Ruby', color: '#CC342D', icon: 'ruby.png' },
+  { name: 'JavaScript', color: '#F7DF1E', icon: 'javascript.png' },
+  { name: 'PyTorch', color: '#EE4C2C', icon: 'pytorch.png' },
+  { name: 'Tensorflow', color: '#FF6F00', icon: 'tensorflow.png' },
+  { name: 'Jira', color: '#0052CC', icon: 'jira.png' },
+  { name: 'PostgreSQL', color: '#336791', icon: 'postgresql.png' },
+  { name: 'ReactJs', color: '#61DAFB', icon: 'react.png' },
+  { name: 'Django', color: '#092E20', icon: 'django.png' },
+  { name: 'Selenium', color: '#43B02A', icon: 'selenium.png' },
+];
+---
+
+<section class="skills">
+  <div class="container">
+    <span class="section-label">My Skills</span>
+    <h2 class="section-title">The Technologies I Use</h2>
+
+    <div class="skills-grid">
+      {skills.map(skill => (
+        <div class="skill-item">
+          <div class="skill-icon" style={`background-color: ${skill.color}20;`}>
+            <img src={`/images/icons/${skill.icon}`} alt={skill.name} width="32" height="32" />
+          </div>
+          <span class="skill-name">{skill.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    padding: var(--section-padding) 0;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    transition: transform var(--transition-fast);
+  }
+
+  .skill-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .skill-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .skill-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .skill-name {
+    font-family: var(--font-accent);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-heading);
+  }
+
+  @media (max-width: 900px) {
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

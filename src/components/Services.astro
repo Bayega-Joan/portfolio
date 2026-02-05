@@ -1,0 +1,156 @@
+---
+const services = [
+  {
+    number: '01',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" stroke-width="1.5">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+      <line x1="8" y1="21" x2="16" y2="21"/>
+      <line x1="12" y1="17" x2="12" y2="21"/>
+      <path d="M6 8h.01M9 8h.01"/>
+    </svg>`,
+    title: 'Machine Learning',
+    description: 'Design and optimize AI models and pipelines for tasks such as multimodal diagnostics, image classification, and intelligent agents.'
+  },
+  {
+    number: '02',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" stroke-width="1.5">
+      <polyline points="16 18 22 12 16 6"/>
+      <polyline points="8 6 2 12 8 18"/>
+      <line x1="12" y1="2" x2="12" y2="22"/>
+    </svg>`,
+    title: 'Application Development',
+    description: 'Build and maintain custom web applications and system features with a focus on accessibility, performance, and user experience.'
+  },
+  {
+    number: '03',
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" stroke-width="1.5">
+      <path d="M12 20V10"/>
+      <path d="M18 20V4"/>
+      <path d="M6 20v-4"/>
+      <circle cx="12" cy="7" r="3"/>
+    </svg>`,
+    title: 'Product Management',
+    description: 'Lead cross-functional teams in translating user needs into digital products, from MVP design through deployment and iteration.'
+  }
+];
+---
+
+<section class="services" id="about">
+  <div class="container">
+    <div class="services-header">
+      <div class="services-intro">
+        <span class="section-label">My Services</span>
+        <h2 class="section-title">What I Do</h2>
+        <p>
+          I'm a research-driven Machine Learning Engineer, Product Developer, and
+          Manager with a strong foundation in deep learning, computer vision, and
+          application development.
+        </p>
+      </div>
+      <div class="services-description">
+        <p>
+          I bring a unique blend of technical fluency in diverse Machine Learning
+          frameworks and cloud platforms, combined with product leadership
+          skills, aligning user needs with business goals, and managing cross-functional teams for AI-powered applications.
+        </p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      {services.map(service => (
+        <div class="service-card">
+          <div class="service-header">
+            <div class="service-icon" set:html={service.icon} />
+            <span class="service-number">{service.number}</span>
+          </div>
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: var(--section-padding) 0;
+    background-color: var(--color-section-gray);
+  }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 50px;
+  }
+
+  .services-intro p,
+  .services-description p {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+  }
+
+  .services-description {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .service-card {
+    background-color: var(--color-background);
+    border-radius: 8px;
+    padding: 35px 30px;
+    transition: box-shadow var(--transition-normal);
+  }
+
+  .service-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .service-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+
+  .service-icon {
+    opacity: 0.8;
+  }
+
+  .service-number {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: 0.3;
+  }
+
+  .service-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    color: var(--color-heading);
+  }
+
+  .service-card p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 900px) {
+    .services-header {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

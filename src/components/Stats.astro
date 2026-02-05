@@ -1,0 +1,150 @@
+---
+const stats = [
+  {
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff9543" stroke-width="1.5">
+      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+    </svg>`,
+    value: '4 Years Job',
+    label: 'Experience'
+  },
+  {
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff9543" stroke-width="1.5">
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+      <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+    </svg>`,
+    value: '3 Full Academic',
+    label: 'Scholarships'
+  },
+  {
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff9543" stroke-width="1.5">
+      <line x1="12" y1="1" x2="12" y2="23"/>
+      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </svg>`,
+    value: '$35,000+',
+    label: 'Seed Capital raised'
+  },
+  {
+    icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff9543" stroke-width="1.5">
+      <circle cx="12" cy="8" r="6"/>
+      <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+    </svg>`,
+    value: '2 AI Innovation',
+    label: 'Awards'
+  }
+];
+---
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      {stats.map(stat => (
+        <div class="stat-item">
+          <div class="stat-icon" set:html={stat.icon} />
+          <div class="stat-content">
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats {
+    padding: 40px 0;
+    background-color: var(--color-background);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+    margin-top: -30px;
+    border-radius: 8px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    border-right: 1px solid var(--color-border);
+  }
+
+  .stat-item:last-child {
+    border-right: none;
+  }
+
+  .stat-icon {
+    flex-shrink: 0;
+  }
+
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-body);
+  }
+
+  @media (max-width: 900px) {
+    .stats {
+      margin-top: 0;
+      border-radius: 0;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-item:nth-child(2) {
+      border-right: none;
+    }
+
+    .stat-item:nth-child(3),
+    .stat-item:nth-child(4) {
+      border-top: 1px solid var(--color-border);
+      padding-top: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 20px;
+    }
+
+    .stat-item:last-child {
+      border-bottom: none;
+      padding-bottom: 10px;
+    }
+
+    .stat-item:nth-child(3),
+    .stat-item:nth-child(4) {
+      border-top: none;
+      padding-top: 10px;
+    }
+  }
+</style>

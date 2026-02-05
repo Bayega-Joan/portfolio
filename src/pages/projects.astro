@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    slug: 'hey-buddy',
+    name: 'Hey Buddy',
+    categories: ['Agentic AI', 'Productivity tools', 'Edtech'],
+    image: '/images/projects/hey-buddy.jpg',
+    problem: 'Students often struggle with managing multiple academic deadlines across different platforms, leading to last-minute cramming and reduced performance.',
+    solution: 'Developed a cross platform smart assistant that synchronized LMS assignments and projects with Google Calendar, automatically breaking them into smaller actionable tasks. Integrated recommendation features for relevant resources such as lecture slides and readings.',
+    tools: ['JavaScript', 'React', 'Google Calendar API', 'Node.js', 'Python', 'Amazon Bedrock']
+  },
+  {
+    slug: 'bridge2africa-lms',
+    name: 'Bridge2Africa LMS',
+    categories: ['Requirements Engineering', 'Project Management', 'EdTech'],
+    image: '/images/projects/bridge2africa.jpg',
+    problem: 'Bridge2Africa needed a structured, user-centered e-Learning Management System (LMS) to improve training delivery and ensure alignment between organizational goals, system requirements, and learner needs.',
+    solution: 'Led a team of four in conducting user research, requirements gathering, and system design documentation for a custom LMS. Developed a comprehensive project timeline with implementation milestones and acceptance criteria, and created traceability matrices linking the Concept of Operations, system requirements, and customer problems to maintain alignment with user needs.',
+    tools: ['Miro', 'Figma', 'Custom Spreadsheets', 'MS Project']
+  },
+  {
+    slug: 'iot-face-recognition',
+    name: 'IoT Face Recognition',
+    categories: ['Edge Computing', 'Image recognition', 'Cloud computing'],
+    image: '/images/projects/face-recognition.jpg',
+    problem: 'Face recognition systems often face challenges in latency, scalability, and privacy when deployed on edge devices in real-world settings.',
+    solution: 'Engineered a full IoT-based face recognition pipeline using lightweight CNN models for on-device detection and embedding extraction. Embeddings were securely transmitted to an AWS Lambda function for identification against a cloud-hosted database, with containerization and serverless deployment enabling low latency and cost optimization.',
+    tools: ['Python', 'TensorFlow', 'Docker', 'AWS Lambda', 'Amazon ECR', 'IoT SDKs', 'Amazon EC2', 'Amazon Greengrass']
+  }
+];
+---
+
+<BaseLayout title="Projects | Joan Bayega">
+  <div class="page-banner">
+    <h1>Projects</h1>
+  </div>
+
+  <section class="projects-section">
+    <div class="container">
+      {projects.map((project, index) => (
+        <article class="project-detail" id={project.slug}>
+          <div class="project-header">
+            <span class="section-label">Project Details</span>
+            <h2>{project.name}</h2>
+            <p class="categories">
+              Categories: {project.categories.join(', ')}
+            </p>
+          </div>
+
+          <div class={`project-content ${index % 2 === 1 ? 'reverse' : ''}`}>
+            <div class="project-image">
+              <img src={project.image} alt={project.name} />
+            </div>
+            <div class="project-info">
+              <div class="info-block">
+                <div class="info-icon">
+                  <img src="/images/icons/problem.svg" alt="Problem" width="24" height="24" />
+                </div>
+                <div>
+                  <h4>The Problem</h4>
+                  <p>{project.problem}</p>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="info-icon">
+                  <img src="/images/icons/solution.svg" alt="Solution" width="24" height="24" />
+                </div>
+                <div>
+                  <h4>The Solution</h4>
+                  <p>{project.solution}</p>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="info-icon">
+                  <img src="/images/icons/tools.svg" alt="Tools" width="24" height="24" />
+                </div>
+                <div>
+                  <h4>Tools Used</h4>
+                  <p>{project.tools.join(', ')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-section {
+    padding: var(--section-padding) 0;
+  }
+
+  .project-detail {
+    margin-bottom: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .project-detail:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .project-header {
+    margin-bottom: 30px;
+  }
+
+  .project-header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .categories {
+    font-size: 0.875rem;
+    color: var(--color-body);
+  }
+
+  .project-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: start;
+  }
+
+  .project-content.reverse {
+    direction: rtl;
+  }
+
+  .project-content.reverse > * {
+    direction: ltr;
+  }
+
+  .project-image img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .info-block {
+    display: flex;
+    gap: 15px;
+  }
+
+  .info-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-block h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: var(--color-heading);
+  }
+
+  .info-block p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 900px) {
+    .project-content,
+    .project-content.reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+    }
+
+    .project-image {
+      order: -1;
+    }
+
+    .project-image img {
+      max-height: 280px;
+    }
+  }
+</style>

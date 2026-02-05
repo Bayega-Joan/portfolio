@@ -1,0 +1,186 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/#about', label: 'About me' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/contact', label: 'Contact Me' },
+];
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Home">
+      <svg width="45" height="52" viewBox="0 0 45 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.5 0L45 13V39L22.5 52L0 39V13L22.5 0Z" fill="none" stroke="#ff9543" stroke-width="2"/>
+        <text x="50%" y="55%" text-anchor="middle" fill="#ff9543" font-family="Jost, sans-serif" font-size="20" font-weight="600">JB</text>
+      </svg>
+    </a>
+
+    <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href.split('#')[0])) }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const nav = document.querySelector('.nav');
+
+  menuBtn?.addEventListener('click', () => {
+    const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+    menuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+    nav?.classList.toggle('open');
+    menuBtn.classList.toggle('open');
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      nav?.classList.remove('open');
+      menuBtn?.classList.remove('open');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-background);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+  }
+
+  .nav-link {
+    font-family: var(--font-accent);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-heading);
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-primary);
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-heading);
+    transition: all var(--transition-normal);
+  }
+
+  .hamburger {
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .hamburger::before {
+    top: -8px;
+  }
+
+  .hamburger::after {
+    top: 8px;
+  }
+
+  .mobile-menu-btn.open .hamburger {
+    background-color: transparent;
+  }
+
+  .mobile-menu-btn.open .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu-btn.open .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+
+    .nav {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background-color: var(--color-background);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all var(--transition-normal);
+    }
+
+    .nav.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-list {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+</style>

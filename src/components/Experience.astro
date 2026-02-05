@@ -1,0 +1,309 @@
+---
+const professionalExperience = [
+  {
+    title: 'Data Infrastructure Engineer',
+    company: 'Water Innovations for a Sustainable Earth [WISE] Group',
+    period: 'Oct 2025 - Present'
+  },
+  {
+    title: 'Web Applications Developer',
+    company: 'Edplus At ASU',
+    period: 'Sep 2023 - Sep 2025'
+  },
+  {
+    title: 'Machine Learning Intern',
+    company: 'Marconi Research And Innovations Lab',
+    period: 'May 2024 - Aug 2024'
+  },
+  {
+    title: 'Founding AI Product Manager',
+    company: 'DMB Translation Services Ltd',
+    period: 'Mar 2021 - Aug 2023'
+  }
+];
+
+const projects = [
+  {
+    name: 'OmniRepute',
+    description: 'A Brand Performance Analyst',
+    link: 'https://devpost.com/software/omnirepute',
+    external: true
+  },
+  {
+    name: 'JurisInsight',
+    description: 'AI Powered Legal Research Platform',
+    link: 'https://devpost.com/software/juris-insight',
+    external: true
+  },
+  {
+    name: 'Hey Buddy',
+    description: "A Student's Personal Assistant",
+    link: '/projects#hey-buddy',
+    external: false
+  },
+  {
+    name: 'Bridge2Africa LMS',
+    description: 'A Gamified Learning Experience',
+    link: '/projects#bridge2africa-lms',
+    external: false
+  },
+  {
+    name: 'IoT Face Recognition Pipeline',
+    description: 'For Deployment On Smart Cameras',
+    link: '/projects#iot-face-recognition',
+    external: false
+  }
+];
+---
+
+<section class="experience" id="experience">
+  <div class="container">
+    <span class="section-label">My Experience</span>
+    <p class="experience-intro">
+      From Requirements engineering and product management to AI product development, I have worked on projects across diverse fields, building a comprehensive and versatile skill set. Below are some of my most notable experiences.
+    </p>
+
+    <h2 class="subsection-title">Professional</h2>
+    <div class="carousel-container">
+      <button class="carousel-btn carousel-prev" data-target="experience-track" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="experience-track">
+          {professionalExperience.map(exp => (
+            <div class="carousel-card">
+              <div class="experience-card">
+                <h3>{exp.title}</h3>
+                <p class="company">{exp.company}</p>
+                <span class="period">{exp.period}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button class="carousel-btn carousel-next" data-target="experience-track" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+
+    <h2 class="subsection-title">Projects</h2>
+    <div class="carousel-container">
+      <button class="carousel-btn carousel-prev" data-target="projects-track" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="projects-track">
+          {projects.map(project => (
+            <div class="carousel-card">
+              <div class="project-card">
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+                <a href={project.link} class="btn btn-primary btn-small" target={project.external ? "_blank" : "_self"} rel={project.external ? "noopener noreferrer" : undefined}>View Details</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button class="carousel-btn carousel-next" data-target="projects-track" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .experience {
+    padding: 80px 0;
+  }
+
+  .experience-intro {
+    max-width: 700px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .subsection-title {
+    font-size: 1.75rem;
+    margin-bottom: 25px;
+    margin-top: 20px;
+  }
+
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 50px;
+  }
+
+  .carousel-viewport {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .carousel-card {
+    flex: 0 0 33.333%;
+    min-width: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .carousel-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #e5e5e5;
+    background-color: #fff;
+    color: #1a1a2e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .carousel-btn:hover {
+    border-color: #ff9543;
+    color: #ff9543;
+  }
+
+  .carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .experience-card,
+  .project-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 30px;
+    height: 100%;
+    min-height: 160px;
+  }
+
+  .experience-card h3,
+  .project-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 8px;
+    color: #1a1a2e;
+  }
+
+  .experience-card .company {
+    font-size: 0.9375rem;
+    margin-bottom: 15px;
+  }
+
+  .experience-card .period {
+    display: inline-block;
+    background-color: #ff9543;
+    color: white;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  .project-card p {
+    font-size: 0.9375rem;
+    margin-bottom: 20px;
+  }
+
+  .btn-small {
+    padding: 8px 18px;
+    font-size: 0.8125rem;
+  }
+
+  @media (max-width: 900px) {
+    .carousel-card {
+      flex: 0 0 50%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .carousel-card {
+      flex: 0 0 100%;
+    }
+
+    .carousel-btn {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>
+
+<script>
+  function setupCarousels() {
+    document.querySelectorAll('.carousel-container').forEach(container => {
+      const track = container.querySelector('.carousel-track') as HTMLElement;
+      const cards = track?.querySelectorAll('.carousel-card');
+      const prevBtn = container.querySelector('.carousel-prev') as HTMLButtonElement;
+      const nextBtn = container.querySelector('.carousel-next') as HTMLButtonElement;
+
+      if (!track || !cards || cards.length === 0) return;
+
+      let currentIndex = 0;
+
+      function getVisibleCount(): number {
+        const width = window.innerWidth;
+        if (width <= 600) return 1;
+        if (width <= 900) return 2;
+        return 3;
+      }
+
+      function getMaxIndex(): number {
+        return Math.max(0, cards.length - getVisibleCount());
+      }
+
+      function updateCarousel() {
+        const visibleCount = getVisibleCount();
+        const cardWidth = 100 / visibleCount;
+        const offset = currentIndex * cardWidth;
+        track.style.transform = `translateX(-${offset}%)`;
+
+        prevBtn.disabled = currentIndex <= 0;
+        nextBtn.disabled = currentIndex >= getMaxIndex();
+      }
+
+      prevBtn?.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
+      });
+
+      nextBtn?.addEventListener('click', () => {
+        if (currentIndex < getMaxIndex()) {
+          currentIndex++;
+          updateCarousel();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        currentIndex = Math.min(currentIndex, getMaxIndex());
+        updateCarousel();
+      });
+
+      updateCarousel();
+    });
+  }
+
+  // Run on initial load
+  setupCarousels();
+
+  // Run on Astro page transitions
+  document.addEventListener('astro:page-load', setupCarousels);
+</script>
