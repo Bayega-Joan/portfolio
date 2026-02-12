@@ -1,0 +1,97 @@
+---
+const platforms = [
+  {
+    title: 'Baobab Platform',
+    description: 'A social, professional, and learning community for young African leaders.',
+    link: 'https://www.baobabplatform.org/landing',
+  },
+  {
+    title: 'Chusa App',
+    description: 'An AI-Powered Sign Language interpretation Application.',
+    link: 'https://dmb-fe.netlify.app/',
+  },
+  {
+    title: 'WISE Data Portal',
+    description: 'Interactive geospatial dashboards for hydrological data accessibility.',
+    link: 'https://wisegroup.org/',
+  },
+];
+---
+
+<section class="platforms" id="platforms">
+  <div class="container">
+    <span class="section-label">Platforms</span>
+    <p class="platforms-intro">
+      Beyond individual projects, I have built and contributed to platforms that serve broader communities. Here are some of the key platforms I've developed or played a significant role in shaping.
+    </p>
+
+    <div class="carousel-container">
+      <button class="carousel-btn carousel-prev" data-target="platforms-track" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="platforms-track">
+          {platforms.map(platform => (
+            <div class="carousel-card">
+              <div class="platform-card">
+                <h3>{platform.title}</h3>
+                <p class="platform-description">{platform.description}</p>
+                <a href={platform.link} class="btn btn-primary btn-small" target="_blank" rel="noopener noreferrer">Visit Platform</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button class="carousel-btn carousel-next" data-target="platforms-track" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .platforms {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+  }
+
+  .platforms-intro {
+    max-width: 700px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .platform-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    height: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .platform-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 10px;
+    color: #1a1a2e;
+  }
+
+  .platform-description {
+    font-size: 0.9375rem;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .platform-description {
+    flex: 1;
+  }
+
+  .platform-card .btn-small {
+    align-self: flex-start;
+  }
+</style>
